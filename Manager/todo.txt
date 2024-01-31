@@ -1,0 +1,71 @@
+from_dir = "d:\\AA"
+dest_dir = "d:\\DATA"
+
+## TCA
+#dir = TCA\\data
+#'Data',"ExtDeviceData", "Logs","OffLineData",'OnLineResult', 'Setup'
+#2023-05_Data.csv
+
+{
+	"TCA": {
+		"devicename": "",
+		"datadir"   : "TCA/data",
+		"dirs"      : ['Data',"ExtDeviceData", "Logs","OffLineData",'OnLineResult', 'Setup'],
+		"pattern"   : {'Data' : ["*_*_Data.csv"], 
+			   'ExtDeviceData': ["*_*_ExtDeviceData.csv", "*_*_ExtDeviceData.txt"]
+					   'Logs' : ["*_*_Logs.csv"]
+				 'OffLineData': ["*_*_OffLineData.csv"]
+				'OnLineResult': ["*_*_OnLineResult.csv"]
+					   'Setup': ["*_*_Setup.csv"]
+					   }
+		},
+	"AE33-S09-01249": {
+		"devicename": "_AE33-S09-01249",
+		"datadir"   : "AE33-S09/data",
+		"dirs"      : ['ddat','table'],
+		"pattern"   : {'ddat' : ["*_*_AE33-S09-01249.ddat"], 
+					   'table': ["*_*_AE33-S09-01249.csv", "*_*_AE33-S09-01249.xls"]
+					   }
+		},
+	"Web_MEM": {
+		"devicename": "_mav_mos_mgu",
+		"datadir"   : "Web_MEM/data",
+		"dirs"      : [],
+		"pattern"   : ["*_*_mav_mos_mgu.csv", "*_*_mav_mos_mgu.xls"]
+		}
+	"PNS": {
+		"devicename": "_pns",
+		"datadir"   : "PNS/src/data",
+		"dirs"      : [],
+		"pattern"   : ["*_*_pns_data.csv", "*_*_pns_log.txt"]
+		}
+	"LVS": {
+		"devicename": "_lvs",
+		"datadir"   : "LVS/src/data",
+		"dirs"      : [],
+		"pattern"   : ["*_*_lvs_data.csv", "*_*_lvs_log.txt"]
+		}
+}
+
+
+
+## Web_MEM
+#dir = Web_MEM\\data
+#2023_05_mav_mos_mgu.csv
+#2023_05_mav_mos_mgu.xls
+		
+## PNS
+#dir = 'PNS/src/data'
+#2023_05_pns_data.csv
+#2023_05_pns_log.txt
+
+## LVS
+#dir = 'LVS/src/data'
+#2023_05_lvs_data.csv
+#2023_05_lvs_log.txt
+
+## AE33-S09-01249
+#dir = AE33-S09/data
+#'ddat','table'
+#ddat:  2022_03_AE33-S09-01249.ddat
+#table: 2022_02_AE33-S09-01249.csv, 2022_02_AE33-S09-01249.xls
