@@ -1,4 +1,4 @@
 echo
 d:
-cd D:\AA\Newborn\
+cd D:\AK\Newborn\
 start /min python newborn_old.py

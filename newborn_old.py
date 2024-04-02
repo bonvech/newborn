@@ -43,11 +43,15 @@ def get_local_ip():
 
 
 if __name__ == "__main__":
+    test = False
     
-    time.sleep(600) # Сон в 10 минут
+    if not test:
+        time.sleep(600) # Сон в 10 минут
     
     hostname, local_ip = get_local_ip()
     text = f"Компьютер {hostname} ({local_ip}) перезагружен!"
+    if test:
+        text = f"Это тестовое сообщение, не реагируйте! " + text
     write_log(text)
     write_bot(text)
 	

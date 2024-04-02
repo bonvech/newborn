@@ -1,5 +1,5 @@
 echo
 d:
-cd D:\AA\Newborn\
+cd D:\AK\Newborn\
 python newborn_old.py
 pause
