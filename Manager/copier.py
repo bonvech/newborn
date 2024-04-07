@@ -4,7 +4,8 @@ from datetime import datetime, date, timedelta
 
 sourse_dir = "d:\\AK\\"
 destin_dir = "d:\\DATA\\"
-sep = "\\"
+figure_dir = "d:\\AK\\WWW\\figures\\"
+#sep = "\\"
 
 # timestamp = "2024_01"
 timestamps = set()
@@ -15,6 +16,23 @@ timestamps.add("_".join(str(yesterday).split("-"))[:7])
 # print(timestamps)
 
 
+##  ===========================================================================
+##  copy figures
+##  ===========================================================================
+
+## "AE33-S09-01249"
+for ftype in ["day.png", "day.svg", "four_plots.png", "waves_day.png", "waves_day.svg", "waves_week.png", "week.png"]:
+    os.system(f"copy {sourse_dir}AE33-S09\\figures\\ae33_bc_{ftype}  {figure_dir}AE33-S09-01249")
+
+## Web_MEM
+for ftype in ["2_day.png", "2_day.svg", "2_week.png", "all_day.png", "all_day.svg", "all_week.png", "four_plots.png"]:
+    os.system(f"copy {sourse_dir}Web_MEM\\figures\\web_msu_{ftype}  {figure_dir}Web_MEM")
+
+
+
+##  ===========================================================================
+##  copy datafiles
+##  ===========================================================================
 for timestamp in timestamps:
     for ftype in ["csv", "xlsx"]:
         ## "AE33-S09-01249"
