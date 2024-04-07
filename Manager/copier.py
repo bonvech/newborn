@@ -2,7 +2,7 @@ import os
 from datetime import datetime, date, timedelta
 
 
-sourse_dir = "d:\\AA\\"
+sourse_dir = "d:\\AK\\"
 destin_dir = "d:\\DATA\\"
 sep = "\\"
 
@@ -16,23 +16,21 @@ timestamps.add("_".join(str(yesterday).split("-"))[:7])
 
 
 for timestamp in timestamps:
-    ## "AE33-S09-01249"
-    os.system(f"copy {sourse_dir}AE33-S09\\data\\table\\{timestamp}_AE33-S09-01249.csv  {destin_dir}AE33-S09-01249 ")
-    os.system(f"copy {sourse_dir}AE33-S09\\data\\table\\{timestamp}_AE33-S09-01249.xlsx {destin_dir}AE33-S09-01249 ")
-    os.system(f"copy {sourse_dir}AE33-S09\\data\\table\\{timestamp}_AE33-S09-01249.csv  {destin_dir}AE33-S09-01249\\table ")
-    os.system(f"copy {sourse_dir}AE33-S09\\data\\table\\{timestamp}_AE33-S09-01249.xlsx {destin_dir}AE33-S09-01249\\table ")
+    for ftype in ["csv", "xlsx"]:
+        ## "AE33-S09-01249"
+        os.system(f"copy {sourse_dir}AE33-S09\\data\\table\\{timestamp}_AE33-S09-01249.{ftype}  {destin_dir}AE33-S09-01249 ")
+        os.system(f"copy {sourse_dir}AE33-S09\\data\\table\\{timestamp}_AE33-S09-01249.{ftype}  {destin_dir}AE33-S09-01249\\table ")
 
-    ## LVS
-    os.system(f"copy {sourse_dir}LVS\\src\\data\\{timestamp}_lvs_data.csv  {destin_dir}LVS")
-    os.system(f"copy {sourse_dir}LVS\\src\\data\\{timestamp}_lvs_log.txt   {destin_dir}LVS")
+        ## Web_MEM
+        os.system(f"copy {sourse_dir}Web_MEM\\data\\{timestamp}_mav_mos_mgu.{ftype}  {destin_dir}Web_MEM")
 
-    ## PNS
-    os.system(f"copy {sourse_dir}PNS\\src\\data\\{timestamp}_pns_data.csv  {destin_dir}PNS")
-    os.system(f"copy {sourse_dir}PNS\\src\\data\\{timestamp}_pns_log.txt   {destin_dir}PNS")
+    for ftype in ["data.csv", "log.txt"]:
+        ## LVS
+        os.system(f"copy {sourse_dir}LVS\\src\\data\\{timestamp}_lvs_{ftype}  {destin_dir}LVS")
 
-    ## Web_MEM
-    os.system(f"copy {sourse_dir}Web_MEM\\data\\{timestamp}_mav_mos_mgu.csv  {destin_dir}Web_MEM")
-    os.system(f"copy {sourse_dir}Web_MEM\\data\\{timestamp}_mav_mos_mgu.xlsx  {destin_dir}Web_MEM")
+        ## PNS
+        os.system(f"copy {sourse_dir}PNS\\src\\data\\{timestamp}_pns_{ftype}  {destin_dir}PNS")
+
 
 
     timestamp = "-".join(timestamp.split("_"))

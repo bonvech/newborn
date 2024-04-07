@@ -1,3 +1,6 @@
-cd D:\\AA\\Manager
-rem python manager.py
-python copier.py
+echo
+
+d:
+cd D:\\AK\\Manager
+start /min python copier.py
+
