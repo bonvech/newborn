@@ -50,10 +50,8 @@ for timestamp in timestamps:
         os.system(f"copy {sourse_dir}PNS\\src\\data\\{timestamp}_pns_{ftype}  {destin_dir}PNS")
 
 
-
-    timestamp = "-".join(timestamp.split("_"))
-
     ## TCA
+    timestamp = "-".join(timestamp.split("_"))
     os.system(f"copy {sourse_dir}TCA\\data\\Data\\{timestamp}_Data.csv    {destin_dir}TCA08\\Data")
     os.system(f"copy {sourse_dir}TCA\\data\\Logs\\{timestamp}_Logs.csv    {destin_dir}TCA08\\Logs")
     os.system(f"copy {sourse_dir}TCA\\data\\Setup\\{timestamp}_Setup.csv  {destin_dir}TCA08\\Setup")
@@ -64,3 +62,16 @@ for timestamp in timestamps:
     os.system(f"copy {sourse_dir}TCA\\data\\OnLineResult\\{timestamp}_OnLineResult.xlsx   {destin_dir}TCA08")
     os.system(f"copy {sourse_dir}TCA\\data\\ExtDeviceData\\{timestamp}_ExtDeviceData.csv  {destin_dir}TCA08\\ExtDeviceData")
     os.system(f"copy {sourse_dir}TCA\\data\\ExtDeviceData\\{timestamp}_ExtDeviceData.txt  {destin_dir}TCA08\\ExtDeviceData")
+
+
+##  ===========================================================================
+##  copy DATA to Yandex.Disk
+##  ===========================================================================
+print("copy DATA to Yandex.Disk")
+#AKdata_dir = "D:\\DATA"
+AKdata_dir = "D:\\DATA"
+yandex_dir = '"D:\\AerosolComplex\\YandexDisk\\ИКМО org.msu\\DATA\\"'
+#yandex_dir = "D:\\AerosolComplex\\YandexDisk\\DATA\\"
+command = f"xcopy {AKdata_dir} {yandex_dir} /e /y"
+print(command)
+os.system(command)
