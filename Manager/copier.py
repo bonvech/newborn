@@ -51,6 +51,12 @@ for ftype in ["2_day.png", "2_day.svg", "2_week.png", "all_day.png", "all_day.sv
     safecopy(f"{source_dir}Web_MEM\\figures\\web_msu_{ftype}",  f"{figure_dir}Web_MEM")
     safecopy(f"{source_dir}Web_MEM_Suxarevskaya\\figures\\web_suxarevskaya_{ftype}",  f"{figure_dir}Web_MEM_Suxarevskaya")
 
+##  LVS, PNS
+## D:\AK\PNS\src\lvs\figures
+for ftype in [".png", ".svg"]:
+    safecopy(f"{source_dir}LVS\\src\\lvs\\figures\\lvs_week{ftype}",  f"{figure_dir}LVS")
+    safecopy(f"{source_dir}PNS\\src\\lvs\\figures\\pns_week{ftype}",  f"{figure_dir}PNS")
+
 
 
 ##  ===========================================================================
@@ -74,10 +80,10 @@ for timestamp in timestamps:
 
     for ftype in ["data.csv", "log.txt"]:
         ## LVS
-        safecopy(f"{source_dir}LVS\\src\\data\\{timestamp}_lvs_{ftype}",  f"{destin_dir}LVS")
+        safecopy(f"{source_dir}LVS\\src\\lvs\\data\\{timestamp}_lvs_{ftype}",  f"{destin_dir}LVS")
 
         ## PNS
-        safecopy(f"{source_dir}PNS\\src\\data\\{timestamp}_pns_{ftype}",  f"{destin_dir}PNS")
+        safecopy(f"{source_dir}PNS\\src\\lvs\\data\\{timestamp}_pns_{ftype}",  f"{destin_dir}PNS")
 
 
     ## TCA
