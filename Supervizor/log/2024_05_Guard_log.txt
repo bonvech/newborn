@@ -1,0 +1,4 @@
+2024-05-17 02:19:29.172346:  Kalanch (192.168.1.54): Файл "C:\AK\AQGuard\requirements.txt" не менялся 267 часов (16034 минут)
+2024-05-17 02:22:29.939539:  Kalanch (192.168.1.54): Error! No file found with extention as
+2024-05-17 02:29:30.815937:  Kalanch (192.168.1.54): Guard Supervisor: Error! No file found with extention txwt
+2024-05-17 02:30:48.063317:  Kalanch (192.168.1.54): Guard Supervisor: Error! No file found with extention txwt
