@@ -103,12 +103,12 @@ class Supervisor:
     ## ----------------------------------------------------------------
     def get_ending(self, n):
         n = int(n)
-        if n % 10 == 1 and n != 11:  ## 1 час
+        if n % 10 == 1 and n != 11:
             return ''
-        elif 2 <= n % 10 <= 4 and n // 10 != 1:  ## 34 часа 
+        elif 2 <= n % 10 <= 4 and n // 10 != 1:
             return 'а'
         else:
-            return 'ов'  ##  35 часов
+            return 'ов'
         
 
     ## ----------------------------------------------------------------
@@ -184,9 +184,9 @@ class Supervisor:
 
         ## если файл не менялся 2 часа - ошибка в телебот
         now = time.time() ## текущее время
-        delta = (now - os.path.getmtime(last_file)) // 60 ## minutes
+        delta = int(now - os.path.getmtime(last_file)) // 60 ## minutes
         if delta > self.alarm_time: # 60 min
-            text  = f"{self.device_name} Supervisor: Файл \"{last_file}\" не менялся "
+            text  = f"{self.device_name.upper()} Supervisor: Файл \"{last_file}\" не менялся "
             text += f"{delta // 60} час{self.get_ending(delta // 60)}" 
             text += f" ({delta} минут)" * (delta < 60)
             ## послать предупреждение, что самый поздний файл очень старый
@@ -195,28 +195,3 @@ class Supervisor:
 
         #self.check_file_data()
         return 0
-
-
-############################################################################
-############################################################################
-if __name__ == "__main__":
-    guard = Supervisor("Guard")
-    guard.datadirname = "C:\\AK\\AQGuard\\data\\raw"
-    guard.extention = "txt"
-    try:
-        if guard.check_lastfile():
-            #exit("Errors with last file") 
-            pass            
-    except Exception as error:
-        guard.write_to_bot(f"{guard.device_name} Supervisor: {error}")
-        
-        
-    guard = Supervisor("AE43")
-    guard.datadirname = "C:\\AK\\AE43-S01\\data\\table"
-    guard.extention = "csv"
-    try:
-        if guard.check_lastfile():
-            #exit("Errors with last file")
-            pass
-    except Exception as error:
-        guard.write_to_bot(f"{guard.device_name} Supervisor: {error}")
