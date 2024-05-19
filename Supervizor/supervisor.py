@@ -98,6 +98,20 @@ class Supervisor:
 
 
     ## ----------------------------------------------------------------
+    ##  определить окончание слова "час" в зависимости от числа 
+    ## 1 час, 2 часа, 5 часов, 21 час
+    ## ----------------------------------------------------------------
+    def get_ending(self, n):
+        n = int(n)
+        if n % 10 == 1 and n != 11:
+            return ''
+        elif 2 <= n % 10 <= 4 and n // 10 != 1:
+            return 'а'
+        else:
+            return 'ов'
+        
+
+    ## ----------------------------------------------------------------
     ##  найти самый поздний файл
     ## ----------------------------------------------------------------
     def get_latest_file(self, extention):
@@ -172,8 +186,9 @@ class Supervisor:
         now = time.time() ## текущее время
         delta = (now - os.path.getmtime(last_file)) // 60 ## minutes
         if delta > self.alarm_time: # 60 min
-            text  = f"{self.device_name} Supervisor: Файл \"{last_file}\" не менялся {delta / 60:.0f} часов." 
-            text += f"({delta:.0f} минут)" * (delta > 60)
+            text  = f"{self.device_name} Supervisor: Файл \"{last_file}\" не менялся {delta / 60:.0f}"
+            text += f" час{self.get_ending(delta // 60)} " 
+            text += f"({delta:.0f} минут)" * (delta < 60)
             ## послать предупреждение, что самый поздний файл очень старый
             self.print_info(text)
             #self.print_message(text)
