@@ -172,7 +172,8 @@ class Supervisor:
         now = time.time() ## текущее время
         delta = (now - os.path.getmtime(last_file)) // 60 ## minutes
         if delta > self.alarm_time: # 60 min
-            text = f"{self.device_name} Supervisor: Файл \"{last_file}\" не менялся {delta / 60:.0f} часов ({delta:.0f} минут)"
+            text  = f"{self.device_name} Supervisor: Файл \"{last_file}\" не менялся {delta / 60:.0f} часов." 
+            text += f"({delta:.0f} минут)" * (delta > 60)
             ## послать предупреждение, что самый поздний файл очень старый
             self.print_info(text)
             #self.print_message(text)
@@ -184,9 +185,9 @@ class Supervisor:
 ############################################################################
 ############################################################################
 if __name__ == "__main__":
-    guard = Supervisor("Guard")
-    guard.datadirname = "C:\\AK\\AQGuard\\data\\raw"
-    guard.extention = "txt"
+    guard = Supervisor("TCA08")
+    guard.datadirname = "D:\\AK\\TCA08\\data\\OnlineResult"
+    guard.extention = "csv"
     try:
         if guard.check_lastfile():
             #exit("Errors with last file") 
@@ -195,8 +196,8 @@ if __name__ == "__main__":
         guard.write_to_bot(f"{guard.device_name} Supervisor: {error}")
         
         
-    guard = Supervisor("AE43")
-    guard.datadirname = "C:\\AK\\AE43-S01\\data\\table"
+    guard = Supervisor("AE33")
+    guard.datadirname = "D:\\AK\\AE33-S09\\data\\table"
     guard.extention = "csv"
     try:
         if guard.check_lastfile():

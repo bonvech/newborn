@@ -1,4 +1,4 @@
 echo
-cd  C:\AK\Newborn\Supervizor
+D:
+cd  D:\AK\Manager\Supervisor
 python supervisor.py 
-pause
