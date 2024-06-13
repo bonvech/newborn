@@ -48,9 +48,11 @@ for ftype in ["day.png", "day.svg", "four_plots.png", "waves_day.png", "waves_da
 
 ##  Web_MEM
 for ftype in ["2_day.png", "2_day.svg", "2_week.png", "all_day.png", "all_day.svg", "all_week.png", "four_plots.png"]:
-    safecopy(f"{source_dir}Web_MEM\\figures\\web_msu_{ftype}",  f"{figure_dir}Web_MEM")
-    safecopy(f"{source_dir}Web_MEM_Suxarevskaya\\figures\\web_suxarevskaya_{ftype}",  f"{figure_dir}Web_MEM_Suxarevskaya")
-
+    for station in ["MGU", "Suxarevskaya", "Ostankino"]:
+        safecopy(f"{source_dir}Web_MEM\\Web_MEM_{station}\\figures\\web_{station.lower()}_{ftype}",  
+                 f"{figure_dir}Web_MEM_{station}")
+    #safecopy(f"{source_dir}Web_MEM\\Web_MEM_Suxarevskaya\\figures\\web_suxarevskaya_{ftype}", f"{figure_dir}Web_MEM_Suxarevskaya")
+    
 ##  LVS, PNS
 ##  D:\AK\PNS\src\lvs\figures
 for ftype in [".png", ".svg"]:
@@ -81,8 +83,10 @@ for timestamp in timestamps:
         safecopy(f"{source_dir}AE43-S01\\data\\table\\{timestamp}_AE43-S01-00125.{ftype}",  f"{destin_dir}AE43-S01-00125\\table ")
 
         ## Web_MEM
-        safecopy(f"{source_dir}Web_MEM\\data\\{timestamp}_mav_mos_mgu.{ftype}",  f"{destin_dir}Web_MEM")
-        safecopy(f"{source_dir}Web_MEM_Suxarevskaya\\data\\{timestamp}_mav_mos_suxarevskaya.{ftype}",  f"{destin_dir}Web_MEM_Suxarevskaya")
+        for station in ["MGU", "Suxarevskaya", "Ostankino"]:
+            safecopy(f"{source_dir}Web_MEM\\Web_MEM_{station}\\data\\{timestamp}_mem_{station.lower()}.{ftype}",  
+                     f"{destin_dir}Web_MEM_{station}")
+        #safecopy(f"{source_dir}Web_MEM_Suxarevskaya\\data\\{timestamp}_mav_mos_suxarevskaya.{ftype}",  f"{destin_dir}Web_MEM_Suxarevskaya")
 
 
     for ftype in ["data.csv", "log.txt"]:
@@ -92,6 +96,10 @@ for timestamp in timestamps:
         ## PNS
         safecopy(f"{source_dir}PNS\\src\\lvs\\data\\{timestamp}_pns_{ftype}",  f"{destin_dir}PNS")
 
+
+    ## AQ Guard Smart
+    safecopy(f"{source_dir}AQGuard\\data\\raw\\{timestamp}_AQ_raw.txt",  f"{destin_dir}AQGuard")
+    
 
     ## TCA
     timestamp = "-".join(timestamp.split("_"))
@@ -139,3 +147,15 @@ os.system(command)
 #command = f"replace {AKdata_dir}\\* {yandex_dir} /A"
 #print(command)
 #os.system(command)
+
+
+##  ===========================================================================
+##  copy AK to Yandex.Disk
+##  ===========================================================================
+print("\n====  copy AK to Yandex.Disk")
+AKdata_dir =  "D:\\AK"
+yandex_dir = '"D:\\AerosolComplex\\YandexDisk\\ИКМО org.msu\\DATA\\AK\\"'
+
+command = f"xcopy {AKdata_dir}\\* {yandex_dir} /E /Y /D"
+print(command)
+os.system(command)
