@@ -1,5 +1,6 @@
 import os, time
 from datetime import datetime
+from fnmatch import fnmatch
 import pandas as pd
 import socket
 import telebot
@@ -142,7 +143,40 @@ class Supervisor:
 
 
     ## ----------------------------------------------------------------
-    ##  найти и проверить самый поздний файл
+    ##  проверить есть ли дубли названий файлов
+    ## ----------------------------------------------------------------
+    def check_doubles(self, dirname, extention):
+        ''' 
+        Функция проверяет имена файлов
+        Возвращает есть ли дубли файлов
+        '''
+        max_file = f"{self.device_name} Supervisor: Error! No file found with extention {extention}"
+
+        #dirname = self.datadirname
+        if not dirname.endswith(self.sep):  dirname = dirname + self.sep
+        if not os.path.isdir(dirname):
+            #self.print_info(f"{self.device_name} Supervisor: Alarm!! Нет такой папки {dirname}! Валим отсюда!")
+            return f"Error! Нет такой папки {dirname}!" 
+
+        max_atime = 0
+        #print(os.listdir(dirname))
+        for filename in os.listdir(dirname):
+            ## проверить файл ли это
+            if not os.path.isfile(dirname + filename):
+                continue
+            if not filename.endswith(extention):
+                continue
+            if fnmatch(filename, "*(*)*"):
+                print(f"В папке {dirname} есть лишние дубли файлов!")
+                return
+            #else:
+                #print(f"В папке {dirname} дублей нет!")
+            
+        return max_file
+
+
+    ## ----------------------------------------------------------------
+    ##  проверить файл
     ## ----------------------------------------------------------------
     def check_file_data(self):
         ## прочитать файл
