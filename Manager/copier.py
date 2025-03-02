@@ -14,13 +14,13 @@ def safecopy(source_file, target_dir):
     
 
   
-###  config directories
+##  config directories
 source_dir = "d:\\AK\\"
 destin_dir = "d:\\DATA\\"
 figure_dir = "d:\\AK\\WWW\\figures\\"
 
 
-## check path copy to
+##  check path copy to
 if not os.path.isdir(destin_dir):
     os.makedirs(destin_dir)
 
@@ -74,15 +74,15 @@ for ftype in [".png", ".svg"]:
 print("\n====  copy datafiles to DATA")
 for timestamp in timestamps:
     for ftype in ["csv", "xlsx"]:
-        ## "AE33-S09-01249"
+        ##  "AE33-S09-01249"
         safecopy(f"{source_dir}AE33-S09\\data\\table\\{timestamp}_AE33-S09-01249.{ftype}",  f"{destin_dir}AE33-S09-01249 ")
         safecopy(f"{source_dir}AE33-S09\\data\\table\\{timestamp}_AE33-S09-01249.{ftype}",  f"{destin_dir}AE33-S09-01249\\table ")
 
-        ## "AE43-S01-00125"
+        ##  "AE43-S01-00125"
         safecopy(f"{source_dir}AE43-S01\\data\\table\\{timestamp}_AE43-S01-00125.{ftype}",  f"{destin_dir}AE43-S01-00125 ")
         safecopy(f"{source_dir}AE43-S01\\data\\table\\{timestamp}_AE43-S01-00125.{ftype}",  f"{destin_dir}AE43-S01-00125\\table ")
 
-        ## Web_MEM
+        ##  Web_MEM
         for station in ["MGU", "Suxarevskaya", "Ostankino"]:
             safecopy(f"{source_dir}Web_MEM\\Web_MEM_{station}\\data\\{timestamp}_mem_{station.lower()}.{ftype}",  
                      f"{destin_dir}Web_MEM_{station}")
@@ -90,18 +90,30 @@ for timestamp in timestamps:
 
 
     for ftype in ["data.csv", "log.txt"]:
-        ## LVS
+        ##  LVS
         safecopy(f"{source_dir}LVS\\src\\lvs\\data\\{timestamp}_lvs_{ftype}",  f"{destin_dir}LVS")
 
-        ## PNS
+        ##  PNS
         safecopy(f"{source_dir}PNS\\src\\lvs\\data\\{timestamp}_pns_{ftype}",  f"{destin_dir}PNS")
 
 
-    ## AQ Guard Smart
+    ##  AQ Guard Smart
     safecopy(f"{source_dir}AQGuard\\data\\raw\\{timestamp}_AQ_raw.txt",  f"{destin_dir}AQGuard")
+    safecopy(f"{source_dir}AQGuard\\data\\table\\{timestamp}_AQ.txt",  f"{destin_dir}AQGuard")
+    safecopy(f"{source_dir}AQGuard\\data\\table\\{timestamp}_AQ.csv",  f"{destin_dir}AQGuard")
     
 
-    ## TCA
+    ##  Fidas
+    ##  D:\AK\Fidas\data\table
+    for ftype in [".csv", ".txt"]:
+        safecopy(f"{source_dir}Fidas\\data\\table\\{timestamp}_Fidas{ftype}",  f"{destin_dir}Fidas")
+
+
+    ##  Meteopost_Chashnikovo
+    safecopy(f"{source_dir}MeteoPost\\data\\table\\{timestamp}_meteopost.csv",  f"{destin_dir}Meteopost_Chashnikovo")
+
+
+    ##  TCA
     timestamp = "-".join(timestamp.split("_"))
     tca_dir = f"{source_dir}TCA08"
     safecopy(f"{tca_dir}\\data\\Data\\{timestamp}_Data.csv",    f"{destin_dir}TCA08\\Data")
@@ -114,7 +126,6 @@ for timestamp in timestamps:
     safecopy(f"{tca_dir}\\data\\OnLineResult\\{timestamp}_OnLineResult.xlsx",  f"{destin_dir}TCA08")
     safecopy(f"{tca_dir}\\data\\ExtDeviceData\\{timestamp}_ExtDeviceData.csv", f"{destin_dir}TCA08\\ExtDeviceData")
     safecopy(f"{tca_dir}\\data\\ExtDeviceData\\{timestamp}_ExtDeviceData.txt", f"{destin_dir}TCA08\\ExtDeviceData")
-
 
 
 ##  ===========================================================================
