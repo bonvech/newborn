@@ -1,56 +1,48 @@
 from supervisor import *
 
 
+actual_devices = ["AE33", "Davis", "Optogaz", "GRIMM", "OPS"]
+devices = {
+    "AE33": { ##  AE33
+        "datadirname": "D:\\AerosolComplex\\YandexDisk\\ИКМО org.msu\\DATA\\AE33-S09-01249",
+        "extention": "csv"
+        },
+    "TCA08": {
+        "datadirname": "D:\\AK\\TCA08\\data\\OnlineResult",
+        "extention": "csv"
+        },
+    "Davis": {
+        "datadirname": "D:\\AerosolComplex\\YandexDisk\\ИКМО org.msu\\_Instruments\\_Davis\\2 ВНИИЖТ\\VNIIZT",
+        "extention": "wlk"
+        },
+    "Optogaz": {
+        "datadirname": "D:\\AerosolComplex\\YandexDisk\\ИКМО org.msu\\_Instruments\\_Optogaz\\VNIIZT",
+        "extention": "log"
+        },
+    "GRIMM": {
+        "datadirname": "D:\\AerosolComplex\\YandexDisk\\ИКМО org.msu\\_Instruments\\_Grimm5416\\_Today",
+        "extention": "txt"
+        },
+    "OPS": {
+        "datadirname": "D:\\AerosolComplex\\YandexDisk\\ИКМО org.msu\\_Instruments\\_OPS\\_Today",
+        "extention": "O30"
+        }        
+}
+
+
 ############################################################################
 ############################################################################
 if __name__ == "__main__":
-    ##  AE33
-    guard = Supervisor("AE33")
-    #guard.datadirname = "D:\\AK\\AE33-S09\\data\\table"
-    guard.datadirname = "D:\\AerosolComplex\\YandexDisk\\ИКМО org.msu\\DATA\\AE33-S09-01249"
-    guard.extention = "csv"
-    try:
-        if guard.check_lastfile():
-            #exit("Errors with last file")
-            pass
-    except Exception as error:
-        guard.write_to_bot(f"{guard.device_name} Supervisor: {error}")
+    for device in actual_devices:  #.keys():
+        guard = Supervisor(device,
+                           datadirname = devices[device]["datadirname"],
+                           extention   = devices[device]["extention"]
+                           )
 
-
-    ##  TCA08
-    guard = Supervisor("TCA08")
-    guard.datadirname = "D:\\AK\\TCA08\\data\\OnlineResult"
-    guard.extention = "csv"
-    try:
-        if guard.check_lastfile():
-            #exit("Errors with last file") 
-            pass            
-    except Exception as error:
-        guard.write_to_bot(f"{guard.device_name} Supervisor: {error}")
-
-
-    ### Davis
-    guard = Supervisor("Davis")
-    guard.datadirname = "D:\\AerosolComplex\\YandexDisk\\ИКМО org.msu\\_Instruments\\_Davis\\2 ВНИИЖТ\\VNIIZT"
-    guard.extention = "wlk"
-    try:
-        if guard.check_lastfile():
-            #exit("Errors with last file") 
-            pass            
-    except Exception as error:
-        guard.write_to_bot(f"{guard.device_name} Supervisor: {error}")
-
-
-    ### Optogaz
-    guard = Supervisor("Davis")
-    guard.datadirname = "D:\\AerosolComplex\\YandexDisk\\ИКМО org.msu\\_Instruments\\_Optogaz\\VNIIZT"
-    guard.extention = "log"
-    try:
-        if guard.check_lastfile():
-            #exit("Errors with last file") 
-            pass            
-    except Exception as error:
-        guard.write_to_bot(f"{guard.device_name} Supervisor: {error}")
-
-      
-    ## D:\AK\Fidas\data\table    
+        print(f"=====\n{device}")
+        try:
+            if guard.check_lastfile():                
+                #exit("Errors with last file")
+                pass
+        except Exception as error:
+            guard.write_to_bot(f"{device} Supervisor: {error}")

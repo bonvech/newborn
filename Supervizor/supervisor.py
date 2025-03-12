@@ -12,7 +12,7 @@ from   matplotlib import dates
 
 
 class Supervisor:
-    def __init__(self, devicename):
+    def __init__(self, devicename, datadirname, extention):
         self.bot_flag = True ## 
         self.test_mode = False
         self.telebot_config_token   = telebot_config.token
@@ -20,17 +20,18 @@ class Supervisor:
         
         self.device_name = devicename
         self.alarm_time  = 60 # 60 min
-        self.extention = "txt"
+        self.extention = extention
 
         self.get_separator()
         ## get local ip
         self.get_local_ip()
 
-        ## прочитать конфиг, считать путь к данным
-        #self.datadirname = 'data/Съемка'
-        self.datadirname = "D:\\AerosolComplex\\YandexDisk\\ИКМО org.msu\\_Instruments\\_Grimm5416\\_Today"
-        self.logdirname  = ".\\log"
+        ##  путь к  файлам исходных данных
+        self.datadirname = datadirname   ##  "Путь к данным"
         if not self.datadirname.endswith(self.sep): self.datadirname += self.sep
+
+        ##  файл лога
+        self.logdirname  = f".{self.sep}log"
         if not self.logdirname.endswith(self.sep):  self.logdirname  += self.sep
         if not os.path.isdir(self.logdirname):
             os.mkdir(self.logdirname)
