@@ -33,7 +33,7 @@ devices = {
 ############################################################################
 ############################################################################
 if __name__ == "__main__":
-    for device in actual_devices:  #.keys():
+    for device in actual_devices:
         guard = Supervisor(device,
                            datadirname = devices[device]["datadirname"],
                            extention   = devices[device]["extention"]
@@ -41,8 +41,7 @@ if __name__ == "__main__":
 
         print(f"=====\n{device}")
         try:
-            if guard.check_lastfile():                
-                #exit("Errors with last file")
-                pass
+            guard.check_lastfile():                
+            
         except Exception as error:
             guard.write_to_bot(f"{device} Supervisor: {error}")
