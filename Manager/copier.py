@@ -113,6 +113,11 @@ for timestamp in timestamps:
     safecopy(f"{source_dir}MeteoPost\\data\\table\\{timestamp}_meteopost.csv",  f"{destin_dir}Meteopost_Chashnikovo")
 
 
+    ##  Optogaz
+    safecopy(f"{source_dir}Optogaz\\data\\table\\{timestamp}_optogaz_data.csv",  f"{destin_dir}Optogaz")
+    safecopy(f"{source_dir}Optogaz\\data\\log\\{timestamp}_optogaz_log.txt",  f"{destin_dir}Optogaz")
+
+
     ##  TCA
     timestamp = "-".join(timestamp.split("_"))
     tca_dir = f"{source_dir}TCA08"
