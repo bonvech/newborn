@@ -12,14 +12,14 @@ from   matplotlib import dates
 
 
 class Supervisor:
-    def __init__(self, devicename, datadirname, extention):
+    def __init__(self, devicename, datadirname, extention, alarm_time=60):
         self.bot_flag = True ## 
         self.test_mode = False
         self.telebot_config_token   = telebot_config.token
         self.telebot_config_channel = telebot_config.channel
         
         self.device_name = devicename
-        self.alarm_time  = 60 # 60 min
+        self.alarm_time  = alarm_time # 60 min
         self.extention = extention
 
         self.get_separator()
@@ -168,7 +168,7 @@ class Supervisor:
             if not filename.endswith(extention):
                 continue
             if fnmatch(filename, "*(*)*"):
-                print(f"В папке {dirname} есть лишние дубли файлов!")
+                print(f"В папке {dirname} есть дубли файлов!")
                 return
             #else:
                 #print(f"В папке {dirname} дублей нет!")
